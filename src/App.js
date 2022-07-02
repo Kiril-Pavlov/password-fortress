@@ -1,10 +1,11 @@
 import './App.css';
+import Register from './Register';
 
 function App() {
   return (
-    <div>
-      Hello
-    </div>
+    <main className='main-container'>
+      <Register />
+    </main>
   );
 }
 
