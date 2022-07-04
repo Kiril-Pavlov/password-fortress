@@ -13,6 +13,8 @@ const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{7,23}$/;
 //it can be from 8 to 24 characters long
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
+const REGISTER_URL = '/register';
+
 
 function Register() {
     const userRef = useRef();
@@ -35,7 +37,7 @@ function Register() {
 
     //states for error or cuccess messages
     const [errorMessage, setErrorMessage] = useState('');
-    const [successMessage, setSuccessMessage] = useState('false');
+    const [successMessage, setSuccessMessage] = useState(false);
 
     // // useEffect that sets the focus on the user input
     // useEffect(() => {
@@ -66,10 +68,43 @@ function Register() {
     }, [user, password, matchPassword])
 
     const handleSubmit = async (e) => {
+        setSuccessMessage(true)
+        console.log('success message',successMessage)
+        console.log(user, password)
 
+        //axios call
+
+        // try {
+        //     const response = await axios.post(
+        //         REGISTER_URL,
+        //         JSON.stringify({user, password}), //check if the backend expects the same names
+        //         {
+        //             headers: {'Content-Type': 'application/json'},
+        //             withCredentials:true
+        //         }
+        //         )
+        //         console.log(response.data);
+        //         console.log(response.accessToken)
+        //         console.log(JSON.stringify(response))
+        //         setSuccessMessage(true)
+        // } catch (error) {
+        //     console.log(error)
+        //     //409 username already taken
+        //     //put several if elseif statements for errors
+        // }
     }
-
+    
     return (
+        <>
+            {successMessage ? (
+                <section>
+                    <h1>Success</h1>
+                    <p>
+                        <a href="#">SignIn</a>
+                    </p>
+                </section>
+            ):(
+
         <div className='register-container'>
             <p className={errorMessage ? "errorMessage" : "offscreen"}>{errorMessage}</p>
             <h1>Register</h1>
@@ -179,6 +214,8 @@ function Register() {
                 </span>
             </p>
         </div>
+            )}
+            </>
     )
 }
 
