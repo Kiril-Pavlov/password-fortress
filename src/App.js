@@ -4,7 +4,8 @@ import Register from './Register';
 function App() {
   return (
     <main className='main-container'>
-      <Register />
+      <Register/>
+      
     </main>
   );
 }
